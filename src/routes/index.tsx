@@ -6,7 +6,7 @@ import heroAsset from "../assets/edible-cups-hero.jpg.asset.json";
 import lifestyleAsset from "../assets/edible-cups-lifestyle.jpg.asset.json";
 import packagingAsset from "../assets/edible-cups-packaging.jpg.asset.json";
 import logoAsset from "../assets/edybite-logo.jpg.asset.json";
-import greenerCupAsset from "../assets/edybite-greener-cup-tomorrow.png.asset.json";
+import greenerCupAsset from "../assets/edybite-greener-cup-tomorrow.jpg.asset.json";
 import { Button } from "../components/Button";
 
 const heroImage = heroAsset.url;
