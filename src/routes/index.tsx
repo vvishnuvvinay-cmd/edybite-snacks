@@ -2,13 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowDown, ArrowRight, Check, Leaf, Menu, ShieldCheck, Sparkles, X } from "lucide-react";
 import { useState, type FormEvent } from "react";
 
-import heroImage from "../assets/edible-cups-hero.jpg";
-import lifestyleImage from "../assets/edible-cups-lifestyle.jpg";
-import packagingImage from "../assets/edible-cups-packaging.jpg";
-import logoImage from "../assets/edybite-logo.jpg";
+import heroAsset from "../assets/edible-cups-hero.jpg.asset.json";
+import lifestyleAsset from "../assets/edible-cups-lifestyle.jpg.asset.json";
+import packagingAsset from "../assets/edible-cups-packaging.jpg.asset.json";
+import logoAsset from "../assets/edybite-logo.jpg.asset.json";
 import { Button } from "../components/Button";
-import { useServerFn } from "@tanstack/react-start";
-import { submitContactEnquiry } from "../lib/contact.functions";
+
+const heroImage = heroAsset.url;
+const lifestyleImage = lifestyleAsset.url;
+const packagingImage = packagingAsset.url;
+const logoImage = logoAsset.url;
 
 const metaDescription =
   "Natural edible tea and coffee cups for cafés, caterers and businesses in Bengaluru. Request a sample pack or a volume-based quote.";
@@ -16,9 +19,9 @@ const metaDescription =
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Edible Cups for Cafés in Bengaluru" },
+      { title: "Edybite | Edible Cups for Cafés in Bengaluru" },
       { name: "description", content: metaDescription },
-      { property: "og:title", content: "India's bite-sized swap for single-use cups" },
+      { property: "og:title", content: "Edybite | India's bite-sized swap for single-use cups" },
       { property: "og:description", content: metaDescription },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -66,23 +69,14 @@ const faqs = [
 
 function DemoForm({ kind }: { kind: "quote" | "contact" }) {
   const [sent, setSent] = useState(false);
-  const [busy, setBusy] = useState(false);
-  const [failed, setFailed] = useState(false);
-  const send = useServerFn(submitContactEnquiry);
-  const submit = async (event: FormEvent<HTMLFormElement>) => {
+  const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const fd = new FormData(event.currentTarget);
-    setBusy(true);
-    setFailed(false);
-    try {
-      const res = await send({ data: Object.fromEntries(fd) });
-      if (res.ok) setSent(true);
-      else setFailed(true);
-    } catch {
-      setFailed(true);
-    } finally {
-      setBusy(false);
-    }
+    const details = Array.from(fd.entries())
+      .map(([key, value]) => `${key}: ${String(value)}`)
+      .join("\n");
+    window.location.href = `mailto:info@edybite.com?subject=${encodeURIComponent("Edybite website enquiry")}&body=${encodeURIComponent(details)}`;
+    setSent(true);
   };
 
   if (sent) {
@@ -181,15 +175,10 @@ function DemoForm({ kind }: { kind: "quote" | "contact" }) {
           />
         </label>
       )}
-      <Button className="sm:col-span-2" type="submit" disabled={busy}>
-        {busy ? "Sending…" : kind === "quote" ? "Get a tailored quote" : "Request my sample"}
+      <Button className="sm:col-span-2" type="submit">
+        {kind === "quote" ? "Get a tailored quote" : "Request my sample"}
         <ArrowRight className="size-4" aria-hidden="true" />
       </Button>
-      {failed && (
-        <p role="alert" className="text-sm text-destructive sm:col-span-2">
-          Something went wrong — please check your details and try again, or message us on WhatsApp.
-        </p>
-      )}
     </form>
   );
 }
@@ -208,15 +197,15 @@ function Index() {
     <main className="overflow-hidden">
       <header className="absolute inset-x-0 top-0 z-30 border-b border-foreground/10 bg-background/90 backdrop-blur-md">
         <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-5 lg:px-8">
-          <a href="#top" className="flex items-center gap-2.5" aria-label="Edy-Bite home">
+          <a href="#top" className="flex items-center gap-2.5" aria-label="Edybite home">
             <img
               src={logoImage}
-              alt="Edy-Bite logo"
+              alt="Edybite logo"
               width={40}
               height={40}
               className="size-10 rounded-full"
             />
-            <span className="font-display text-xl font-bold">Edy-Bite</span>
+            <span className="font-display text-xl font-bold">Edybite</span>
           </a>
           <nav className="hidden items-center gap-7 md:flex" aria-label="Main navigation">
             {navItems.map(([label, href]) => (
@@ -611,14 +600,14 @@ function Index() {
           <div className="flex items-center gap-4">
             <img
               src={logoImage}
-              alt="Edy-Bite logo"
+              alt="Edybite logo"
               width={48}
               height={48}
               loading="lazy"
               className="size-12 rounded-full"
             />
             <div>
-              <p className="font-display text-2xl font-bold">Edy-Bite</p>
+              <p className="font-display text-2xl font-bold">Edybite</p>
               <p className="mt-1 text-sm text-background/60">
                 Serving cafés and businesses across Bengaluru.
               </p>
@@ -648,7 +637,7 @@ function Index() {
         </div>
         <div className="mx-auto mt-8 flex max-w-7xl flex-wrap items-center justify-between gap-3 border-t border-background/15 pt-6 text-xs text-background/40">
           <span>Edible cups. Nothing left behind.</span>
-          <span>© 2026 Edy-Bite. All rights reserved.</span>
+          <span>© 2026 Edybite. All rights reserved.</span>
           <ShieldCheck className="size-5" aria-label="Food safety focused" />
         </div>
       </footer>
