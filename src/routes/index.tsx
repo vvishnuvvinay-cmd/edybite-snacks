@@ -555,6 +555,24 @@ function Index() {
         </div>
       </section>
 
+      <section className="bg-foreground px-5 py-20 text-center text-background lg:px-8 lg:py-28">
+        <div className="mx-auto max-w-4xl">
+          <Leaf className="mx-auto size-8 text-accent" aria-hidden="true" />
+          <h2 className="mt-6 font-display text-5xl font-bold leading-tight sm:text-7xl">
+            Small cup. Big change.
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-background/70">
+            Good drinks, a kinder planet — every Edybite cup served is one less cup heading to a
+            landfill.
+          </p>
+          <Button asChild variant="inverse" className="mt-8">
+            <a href="#contact">
+              Be part of the change <ArrowRight className="size-4" aria-hidden="true" />
+            </a>
+          </Button>
+        </div>
+      </section>
+
       <section id="faq" className="scroll-mt-20 px-5 py-20 lg:px-8 lg:py-28">
         <div className="mx-auto max-w-4xl">
           <p className="eyebrow">Good to know</p>
@@ -636,7 +654,7 @@ function Index() {
           </div>
         </div>
         <div className="mx-auto mt-8 flex max-w-7xl flex-wrap items-center justify-between gap-3 border-t border-background/15 pt-6 text-xs text-background/40">
-          <span>Edible cups. Nothing left behind.</span>
+          <span>Small cups. A brighter tomorrow.</span>
           <span>© 2026 Edybite. All rights reserved.</span>
           <ShieldCheck className="size-5" aria-label="Food safety focused" />
         </div>
