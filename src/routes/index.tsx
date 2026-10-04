@@ -6,12 +6,14 @@ import heroAsset from "../assets/edible-cups-hero.jpg.asset.json";
 import lifestyleAsset from "../assets/edible-cups-lifestyle.jpg.asset.json";
 import packagingAsset from "../assets/edible-cups-packaging.jpg.asset.json";
 import logoAsset from "../assets/edybite-logo.jpg.asset.json";
+import greenerCupAsset from "../assets/edybite-greener-cup-tomorrow.png.asset.json";
 import { Button } from "../components/Button";
 
 const heroImage = heroAsset.url;
 const lifestyleImage = lifestyleAsset.url;
 const packagingImage = packagingAsset.url;
 const logoImage = logoAsset.url;
+const greenerCupImage = greenerCupAsset.url;
 
 const metaDescription =
   "Natural edible tea and coffee cups for cafés, caterers and businesses in Bengaluru. Request a sample pack or a volume-based quote.";
@@ -555,21 +557,33 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-foreground px-5 py-20 text-center text-background lg:px-8 lg:py-28">
-        <div className="mx-auto max-w-4xl">
-          <Leaf className="mx-auto size-8 text-accent" aria-hidden="true" />
-          <h2 className="mt-6 font-display text-5xl font-bold leading-tight sm:text-7xl">
-            Small cup. Big change.
-          </h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-background/70">
-            Good drinks, a kinder planet — every Edybite cup served is one less cup heading to a
-            landfill.
-          </p>
-          <Button asChild variant="inverse" className="mt-8">
-            <a href="#contact">
-              Be part of the change <ArrowRight className="size-4" aria-hidden="true" />
-            </a>
-          </Button>
+      <section className="bg-foreground px-5 py-20 text-background lg:px-8 lg:py-28">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.15fr_.85fr] lg:gap-16">
+          <div className="order-2 overflow-hidden rounded-md shadow-2xl lg:order-1">
+            <img
+              src={greenerCupImage}
+              alt="Edybite brand poster showing edible cups, a customer eating the cup, and the line 'A Greener Cup, A Brighter Tomorrow'"
+              loading="lazy"
+              width={1536}
+              height={1024}
+              className="w-full"
+            />
+          </div>
+          <div className="order-1 text-center lg:order-2 lg:text-left">
+            <Leaf className="mx-auto size-8 text-accent lg:mx-0" aria-hidden="true" />
+            <h2 className="mt-6 font-display text-5xl font-bold leading-tight sm:text-6xl">
+              Small cup. Big change.
+            </h2>
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-background/70 lg:mx-0">
+              Good drinks, a kinder planet — every Edybite cup served is one less cup heading to a
+              landfill.
+            </p>
+            <Button asChild variant="inverse" className="mt-8">
+              <a href="#contact">
+                Be part of the change <ArrowRight className="size-4" aria-hidden="true" />
+              </a>
+            </Button>
+          </div>
         </div>
       </section>
 
